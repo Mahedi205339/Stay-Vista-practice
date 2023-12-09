@@ -12,7 +12,7 @@ const Rooms = () => {
     const category = params.get('category')
     const [loading , setLoading]=useState(false)
     useEffect(() => {
-        fetch('./rooms.json')
+        fetch('https://raw.githubusercontent.com/shakilahmedatik/stay-vista-resources/main/data/rooms.json')
             .then(res => res.json())
             .then(data => {
 

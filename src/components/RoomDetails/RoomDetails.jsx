@@ -10,7 +10,7 @@ const RoomDetails = () => {
     const { id } = useParams()
     const [room, setRoom] = useState([])
     useEffect(() => {
-        fetch('/rooms.json')
+        fetch('https://raw.githubusercontent.com/shakilahmedatik/stay-vista-resources/main/data/rooms.json')
             .then(res => res.json())
             .then(data => {
                 const singleRoom = data.find(room => room._id === id)
