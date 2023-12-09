@@ -6,7 +6,7 @@ import { router } from './routes/Routes.jsx'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { Toaster } from 'react-hot-toast'
-import AuthProvider from '../src/providers/AuthProvider.jsx'
+import AuthProvider from './providers/AuthProvider.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Toaster />

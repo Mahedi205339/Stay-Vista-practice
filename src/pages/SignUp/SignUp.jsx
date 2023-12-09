@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { imageUpload } from '../../api/utils'
+import useAuth from '../../hooks/useAuth'
 
 const SignUp = () => {
+
+  const { createUser, updateUserProfile } = useAuth()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -11,8 +14,23 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0]
-    const imageData = await imageUpload(image)
-    console.log(imageData);
+
+
+    try {
+      // upload image 
+      const imageData = await imageUpload(image)
+      console.log(imageData);
+      // User Registration 
+      const result = await createUser(email, password)
+      //  save username and & photo 
+
+      await updateUserProfile(name, imageData?.data?.display_url)
+
+      console.log(result);
+
+    } catch (err) {
+      console.log(err);
+    }
 
   }
   return (
