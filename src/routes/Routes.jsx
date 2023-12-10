@@ -5,6 +5,7 @@ import SignUp from '../pages/SignUp/SignUp'
 import Main from '../layouts/Main'
 import Home from '../pages/Home/Home'
 import RoomDetails from '../components/RoomDetails/RoomDetails'
+import PrivateRoute from './PrivateRoute'
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/room/:id',
-        element: <RoomDetails></RoomDetails>
+        element: <PrivateRoute><RoomDetails></RoomDetails></PrivateRoute>
       }
     ],
   },

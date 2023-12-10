@@ -5,10 +5,13 @@ import useAuth from '../../hooks/useAuth'
 import { getToken, saveUser } from '../../api/auth'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
+
 const SignUp = () => {
   const navigate = useNavigate()
   const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth()
 
+
+  console.log(location);
   const handleSubmit = async (event) => {
     event.preventDefault()
     const form = event.target;
@@ -47,7 +50,7 @@ const SignUp = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      const result =await signInWithGoogle()
+      const result = await signInWithGoogle()
       // save user in database 
       const dbResponse = await saveUser(result?.user)
       console.log(dbResponse);
