@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { imageUpload } from '../../api/utils'
 import useAuth from '../../hooks/useAuth'
-
+import { getToken, saveUser } from '../../api/auth'
+import toast from 'react-hot-toast'
+import { TbFidgetSpinner } from 'react-icons/tb'
 const SignUp = () => {
-
-  const { createUser, updateUserProfile } = useAuth()
+  const navigate = useNavigate()
+  const { createUser, updateUserProfile, loading } = useAuth()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -19,7 +21,7 @@ const SignUp = () => {
     try {
       // upload image 
       const imageData = await imageUpload(image)
-      console.log(imageData);
+      // console.log(imageData);
       // User Registration 
       const result = await createUser(email, password)
       //  save username and & photo 
@@ -27,6 +29,15 @@ const SignUp = () => {
       await updateUserProfile(name, imageData?.data?.display_url)
 
       console.log(result);
+      // save user in database 
+      const dbResponse = await saveUser(result?.user)
+      console.log(dbResponse);
+
+      //get token 
+      await getToken(result?.user?.email)
+      navigate('/')
+      toast.success('signUp successfully')
+
 
     } catch (err) {
       console.log(err);
@@ -109,7 +120,7 @@ const SignUp = () => {
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
             >
-              Continue
+              {loading ? <TbFidgetSpinner className='animate-spin mx-auto' /> : 'Continue'}
             </button>
           </div>
         </form>
