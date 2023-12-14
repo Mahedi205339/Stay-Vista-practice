@@ -6,7 +6,7 @@ const Calender = ({value}) => {
         <div>
             <DateRange
                 rangeColors={['#F43F5E']}
-                ranges={value}
+                ranges={[value]}
                 showDateDisplay={false}
                 direction='vertical'
             />
