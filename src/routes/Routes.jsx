@@ -6,6 +6,7 @@ import Main from '../layouts/Main'
 import Home from '../pages/Home/Home'
 import RoomDetails from '../components/RoomDetails/RoomDetails'
 import PrivateRoute from './PrivateRoute'
+import { getRoom } from '../api/rooms'
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +16,12 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
         path: '/room/:id',
-        element: <PrivateRoute><RoomDetails></RoomDetails></PrivateRoute>
+        element: <PrivateRoute><RoomDetails></RoomDetails></PrivateRoute>,
+        loader: ({ params }) => getRoom(params.id)
       }
     ],
   },

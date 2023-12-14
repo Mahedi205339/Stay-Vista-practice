@@ -1,6 +1,7 @@
 import { DateRange } from 'react-date-range';
 
-const Calender = ({ value, handleSelect }) => {
+const Calender = ({value}) => {
+    console.log(value);
     return (
         <div>
             <DateRange

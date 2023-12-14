@@ -5,15 +5,16 @@ import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Headings from "../Headings/Headings";
 import Loader from "../Loader/Loader";
+import { getAllRooms } from "../../api/rooms";
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([])
     const [params, setParams] = useSearchParams()
     const category = params.get('category')
-    const [loading , setLoading]=useState(false)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/shakilahmedatik/stay-vista-resources/main/data/rooms.json')
-            .then(res => res.json())
+        setLoading(false)
+        getAllRooms( )
             .then(data => {
 
                 if (category) {
@@ -25,7 +26,7 @@ const Rooms = () => {
             })
     }, [category])
 
-    if(loading){
+    if (loading) {
         return <Loader></Loader>
     }
 
@@ -43,11 +44,11 @@ const Rooms = () => {
                     :
                     <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
                         <Headings center={true}
-                        title={"No Rooms Available In This Category"}
-                        subtitle={"Please select other category"}
-                    ></Headings>
+                            title={"No Rooms Available In This Category"}
+                            subtitle={"Please select other category"}
+                        ></Headings>
                     </div>
-                    
+
             }
 
 

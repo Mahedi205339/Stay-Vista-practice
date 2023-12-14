@@ -1,23 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Container from "../Shared/Container";
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Header from "./Header";
 import RoomInfo from "./RoomInfo";
 import RoomReservation from "./RoomReservation";
 
 const RoomDetails = () => {
-    const { id } = useParams()
-    const [room, setRoom] = useState([])
-    useEffect(() => {
-        fetch('https://raw.githubusercontent.com/shakilahmedatik/stay-vista-resources/main/data/rooms.json')
-            .then(res => res.json())
-            .then(data => {
-                const singleRoom = data.find(room => room._id === id)
-                setRoom(singleRoom)
-            })
-    }, [id])
-
+    const room = useLoaderData()
+    console.log(room);
 
     return (
         <Container>
