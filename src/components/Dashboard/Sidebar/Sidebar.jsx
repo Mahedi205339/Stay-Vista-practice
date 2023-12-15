@@ -2,6 +2,7 @@ import { useState } from 'react'
 // Components
 import ToggleBtn from '../../Button/ToggleBtn'
 // Icons
+import { BsFillHouseAddFill } from "react-icons/bs"
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
@@ -9,12 +10,14 @@ import { BsGraphUp } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import logoImg from '../../../assets/images/logo.png'
 import MenuItem from './MenuItem'
+import { MdAddHomeWork } from "react-icons/md"
 const Sidebar = () => {
     const [toggle, setToggle] = useState(false)
     const [isActive, setActive] = useState(false)
 
     //   For guest/host menu item toggle button
     const toggleHandler = event => {
+        toggle(false)
         setToggle(event.target.checked)
     }
     // Sidebar Responsive Handler
@@ -78,6 +81,17 @@ const Sidebar = () => {
                             />
 
                             {/* Menu Items */}
+                            <MenuItem
+                                icon={BsFillHouseAddFill}
+                                label='Add Room'
+                                address='/dashboard/add-room'
+                            />
+                            <MenuItem
+                                icon={MdAddHomeWork}
+                                label='My Listings'
+                                address='/dashboard/my-listing'
+                            />
+
                         </nav>
                     </div>
                 </div>
