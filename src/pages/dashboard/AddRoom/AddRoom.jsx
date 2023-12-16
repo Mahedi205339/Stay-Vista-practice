@@ -1,11 +1,10 @@
 // import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
-import { addRoom } from '../../../api/rooms'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import AddRoomForm from '../../../components/Form/AddRoomForm'
-import { imageUpload } from '../../../api/utils'
 import useAuth from '../../../hooks/useAuth'
+import { imageUpload } from '../../../api/utils'
 
 
 const AddRoom = () => {
@@ -58,7 +57,7 @@ const AddRoom = () => {
         }
 
         try {
-            const data = await addRoom(roomData)
+            const data = await AddRoom(roomData)
             console.log(data)
             setUploadButtonText('Uploaded!')
             toast.success('Room Added!')
