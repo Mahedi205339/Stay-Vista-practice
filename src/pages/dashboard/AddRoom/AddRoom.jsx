@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import AddRoomForm from '../../../components/Form/AddRoomForm'
 import useAuth from '../../../hooks/useAuth'
+import { addRoom } from '../../../api/rooms'
 import { imageUpload } from '../../../api/utils'
 
 
@@ -55,13 +56,13 @@ const AddRoom = () => {
             description,
             image: image_url?.data?.display_url,
         }
+        // console.log(roomData);
 
         try {
-            const data = await AddRoom(roomData)
+            const data = await addRoom(roomData)
             console.log(data)
-            setUploadButtonText('Uploaded!')
             toast.success('Room Added!')
-            navigate('/dashboard/my-listings')
+            navigate('/dashboard/my-listing')
         } catch (err) {
             console.log(err)
             toast.error(err.message)

@@ -11,7 +11,11 @@ import { Link } from 'react-router-dom'
 import logoImg from '../../../assets/images/logo.png'
 import MenuItem from './MenuItem'
 import { MdAddHomeWork } from "react-icons/md"
+import useAuth from '../../../hooks/useAuth'
 const Sidebar = () => {
+
+    const { logOut } = useAuth()
+
     const [toggle, setToggle] = useState(false)
     const [isActive, setActive] = useState(false)
 
@@ -57,15 +61,15 @@ const Sidebar = () => {
                 <div>
                     <div>
                         <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
-                        <Link to="/">
-                            <img
-                                className="w-24 lg:w-40 "
-                                src={logoImg}
-                                alt='logo'
-                                width='100'
-                                height='100'
-                            />
-                        </Link>
+                            <Link to="/">
+                                <img
+                                    className="w-24 lg:w-40 "
+                                    src={logoImg}
+                                    alt='logo'
+                                    width='100'
+                                    height='100'
+                                />
+                            </Link>
                         </div>
                     </div>
 
@@ -107,7 +111,7 @@ const Sidebar = () => {
                     <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
                         <GrLogout className='w-5 h-5' />
 
-                        <span className='mx-4 font-medium'>Logout</span>
+                        <span onClick={logOut} className='mx-4 font-medium'>Logout</span>
                     </button>
                 </div>
             </div>
