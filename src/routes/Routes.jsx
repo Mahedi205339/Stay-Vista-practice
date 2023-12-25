@@ -15,6 +15,7 @@ import AdminRoute from './AdminRoute'
 import ManageUser from '../pages/dashboard/Admin/ManageUser'
 import Profile from '../pages/dashboard/Admin/Common/Profile'
 import MyBookings from '../pages/dashboard/Guest/MyBookings'
+import ManageBookings from '../pages/dashboard/Host/ManageBookings'
 
 export const router = createBrowserRouter([
   {
@@ -37,28 +38,32 @@ export const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   {
     path: '/dashboard',
-    element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    children:[
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
       {
-        path:'add-room',
-        element:<PrivateRoute><HostRoute><AddRoom></AddRoom></HostRoute> </PrivateRoute>
+        path: 'add-room',
+        element: <PrivateRoute><HostRoute><AddRoom></AddRoom></HostRoute> </PrivateRoute>
       },
       {
-        path:'my-listing',
-        element:<PrivateRoute> <HostRoute><MyListing></MyListing></HostRoute></PrivateRoute>
+        path: 'my-listing',
+        element: <PrivateRoute> <HostRoute><MyListing></MyListing></HostRoute></PrivateRoute>
       },
       {
         path: 'manage-users',
-        element:<PrivateRoute><AdminRoute><ManageUser></ManageUser></AdminRoute></PrivateRoute>
+        element: <PrivateRoute><AdminRoute><ManageUser></ManageUser></AdminRoute></PrivateRoute>
       },
       {
         path: 'profile',
-        element:<PrivateRoute><Profile></Profile></PrivateRoute>
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: 'manage-bookings',
+        element: <PrivateRoute><HostRoute><ManageBookings></ManageBookings></HostRoute> </PrivateRoute>
       }
       ,
       {
         path: 'my-bookings',
-        element:<PrivateRoute><MyBookings></MyBookings></PrivateRoute>
+        element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>
       }
     ]
   }

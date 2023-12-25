@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import Loader from '../../../components/Loader/Loader'
 import useAuth from '../../../hooks/useAuth'
 import { getBookings } from '../../../api/bookings'
-import TableRow from '../../../components/Dashboard/Sidebar/TablieRow'
+import TableRow from '../../../components/Dashboard/Sidebar/TableRow'
 
 const MyBookings = () => {
     const { user, loading } = useAuth()
@@ -72,7 +72,7 @@ const MyBookings = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* Table Row Data */}{' '}
+                                    {/* Table Row Data */}
                                     {bookings &&
                                         bookings.map(booking => (
                                             <TableRow key={booking._id} booking={booking} />
