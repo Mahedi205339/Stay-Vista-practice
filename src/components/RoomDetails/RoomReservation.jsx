@@ -35,11 +35,11 @@ const RoomReservation = ({ room }) => {
             email: user?.email,
             image: user?.photoURL,
         },
-        host : room?.host?.email,
-        location:room?.location,
+        host: room?.host?.email,
+        location: room?.location,
         price: totalPrice,
         to: value.endDate,
-        from:value.startDate,
+        from: value.startDate,
         title: room?.title,
         roomId: room._id,
         image: room?.image,
@@ -60,7 +60,7 @@ const RoomReservation = ({ room }) => {
             </div>
             <hr />
             <div className="p-4">
-                <Button onClick={() => setIsOpen(true)} label={"Reserve"}
+                <Button disabled={room.host.email === user.email || room.booked} onClick={() => setIsOpen(true)} label={"Reserve"}
 
                 />
             </div>
