@@ -10,7 +10,6 @@ const ManageBookings = () => {
   const {
     data: bookings = [],
     isLoading,
-    refetch,
   } = useQuery({
     queryKey: ['bookings', user?.email],
     enabled: !loading,
