@@ -31,7 +31,7 @@ const Login = () => {
 
       //get token 
       await getToken(result?.user?.email)
-      navigate(form, { replace: true })
+      navigate(form)
       toast.success('Login successfully')
 
 
