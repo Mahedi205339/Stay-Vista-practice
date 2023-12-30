@@ -5,13 +5,13 @@ import useRole from '../../../../hooks/useRole';
 const Profile = () => {
     const { user } = useAuth()
     const [role] = useRole()
-    console.log(user)
+    // console.log(user)
     return (
         <div className='flex justify-center items-center h-screen'>
             <Helmet>
                 <title>Profile</title>
             </Helmet>
-            <div className='bg-white shadow-lg rounded-2xl w-3/5'>
+            <div className='bg-white shadow-lg rounded-2xl w-11/12 md:w-3/5'>
                 <img
                     alt='profile'
                     src='https://wallpapercave.com/wp/wp10784415.jpg'
@@ -29,7 +29,7 @@ const Profile = () => {
                     <p className='p-2 px-4 text-xs text-white bg-pink-500 rounded-full'>
                         {role && role.toUpperCase()}
                     </p>
-                    <p className='mt-2 text-xl font-medium text-gray-800 '>
+                    <p className='mt-2 text-sm md:text-base lg:text-xl font-medium text-gray-800 '>
                         User Id: {user.uid}
                     </p>
                     <div className='w-full p-2 mt-4 rounded-lg'>

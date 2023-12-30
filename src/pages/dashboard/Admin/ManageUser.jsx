@@ -11,7 +11,7 @@ const ManageUsers = () => {
 
   })
 
-  console.log(users)
+  // console.log(users)
   return (
     <>
       <div className='container mx-auto px-4 sm:px-8'>

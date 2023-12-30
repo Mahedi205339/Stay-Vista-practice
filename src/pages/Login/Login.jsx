@@ -9,8 +9,8 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const form = location?.state?.from?.pathname || '/'
-  console.log(location);
+  const from = location?.state?.from?.pathname || '/'
+  // console.log(location);
   const { signIn, signInWithGoogle, loading } = useAuth()
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -31,7 +31,7 @@ const Login = () => {
 
       //get token 
       await getToken(result?.user?.email)
-      navigate(form)
+      navigate(from, { replace: true })
       toast.success('Login successfully')
 
 
@@ -50,7 +50,7 @@ const Login = () => {
 
       //get token 
       await getToken(result?.user?.email)
-      navigate(form, { replace: true })
+      navigate(from, { replace: true })
       toast.success('SignUp successfully')
     } catch (err) {
       console.log(err);
