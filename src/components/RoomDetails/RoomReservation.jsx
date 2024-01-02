@@ -1,4 +1,4 @@
-import { formatDistance, set } from "date-fns";
+import { formatDistance } from "date-fns";
 import { useState } from "react";
 import Button from "../Button/Button";
 import Calender from "./Calender";
@@ -29,6 +29,15 @@ const RoomReservation = ({ room }) => {
     const totalPrice = totalDays * room?.price
     console.log(totalPrice);
 
+    const handleDateChange = ranges => {
+        console.log(ranges);
+        setValue({
+            startDate: new Date(room?.from),
+            endDate: new Date(room?.to),
+            key: 'selection'
+        })
+    }
+
     const [bookingInfo, setBookingInfo] = useState({
         guest: {
             name: user?.displayName,
@@ -45,6 +54,7 @@ const RoomReservation = ({ room }) => {
         image: room?.image,
 
     })
+    console.log(setBookingInfo);
 
     return (
         <div className="rounded-xl border-[1px] border-neutral-200 overflow-hidden bg-white">
@@ -56,7 +66,9 @@ const RoomReservation = ({ room }) => {
             </div>
             <hr />
             <div className="flex justify-center">
-                <Calender value={value} />
+                <Calender
+                    handleDateChange={handleDateChange}
+                    value={value} />
             </div>
             <hr />
             <div className="p-4">

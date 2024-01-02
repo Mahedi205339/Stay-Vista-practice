@@ -1,6 +1,6 @@
 import { DateRange } from 'react-date-range';
 
-const Calender = ({value}) => {
+const Calender = ({value ,handleDateChange}) => {
     console.log(value);
     return (
         <div>
@@ -9,6 +9,7 @@ const Calender = ({value}) => {
                 ranges={[value]}
                 showDateDisplay={false}
                 direction='vertical'
+                onChange={handleDateChange}
             />
         </div>
     );
