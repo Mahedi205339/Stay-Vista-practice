@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
       {
         path:'update-room/:id',
         element: <PrivateRoute><HostRoute> <UpdateRoom></UpdateRoom></HostRoute></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/update-room/${params.id}`)
+        loader:({params})=>fetch(`https://stavista-server.vercel.app/update-room/${params.id}`)
       }
     ]
   }

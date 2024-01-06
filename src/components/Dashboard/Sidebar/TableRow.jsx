@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 
-const TableRow = ({ booking }) => {
+const TableRow = ({ booking, handleCancelBooking }) => {
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -56,7 +56,7 @@ const TableRow = ({ booking }) => {
             aria-hidden='true'
             className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
           ></span>
-          <span className='relative'>Cancel</span>
+          <span onClick={() => handleCancelBooking(booking._id)} className='relative'>Cancel</span>
         </span>
       </td>
     </tr>

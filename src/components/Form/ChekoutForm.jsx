@@ -15,13 +15,13 @@ const CheckoutForm = ({ bookingInfo, closeModal }) => {
     const [clientSecret, setClientSecret] = useState('')
     const [processing, setProcessing] = useState(false)
     const navigate = useNavigate()
-   //console.log(bookingInfo);
+    //console.log(bookingInfo);
     useEffect(() => {
         // create payment intent
         if (bookingInfo.price > 0) {
             createPaymentIntent({ price: bookingInfo.price }).then(data => {
 
-                console.log(data.clientSecret)
+                // console.log(data.clientSecret)
                 setClientSecret(data.clientSecret)
             })
         }

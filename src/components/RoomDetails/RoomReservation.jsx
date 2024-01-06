@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import Calender from "./Calender";
 import BookingModal from "../Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
+import MyBookings from "../../pages/dashboard/Guest/MyBookings";
 
 
 const RoomReservation = ({ room }) => {
@@ -80,8 +81,18 @@ const RoomReservation = ({ room }) => {
                 <div>Total</div>
                 <div>${totalPrice}</div>
             </div>
-            <BookingModal closeModal={closeModal} isOpen={isOpen} bookingInfo={bookingInfo} />
+            <BookingModal
+                closeModal={closeModal}
+                isOpen={isOpen}
+                bookingInfo={bookingInfo} />
+                <div className="hidden">
+                    <MyBookings
+                bookingInfo={bookingInfo}
+                ></MyBookings>
+                </div>
+                
         </div>
+
     );
 };
 

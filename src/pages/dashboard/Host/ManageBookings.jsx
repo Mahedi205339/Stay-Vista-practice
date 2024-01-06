@@ -4,17 +4,31 @@ import useAuth from '../../../hooks/useAuth'
 import { getHostBookings } from '../../../api/bookings'
 import Loader from '../../../components/Loader/Loader'
 import TableRow from '../../../components/Dashboard/Sidebar/TableRow'
+import axiosSecure from '../../../api'
+import toast from 'react-hot-toast'
 
 const ManageBookings = () => {
   const { user, loading } = useAuth()
   const {
     data: bookings = [],
-    isLoading,
+    isLoading, refetch
   } = useQuery({
     queryKey: ['bookings', user?.email],
     enabled: !loading,
     queryFn: async () => await getHostBookings(user?.email),
   })
+
+
+  const handleCancelBooking = id => {
+    axiosSecure.delete(`/booking/${id}`)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          toast.success('booking canceled')
+        }
+        refetch()
+      })
+  }
   // console.log(bookings)
   if (isLoading) return <Loader />
   return (
@@ -72,7 +86,9 @@ const ManageBookings = () => {
                   {/* Table row data */}
                   {bookings &&
                     bookings.map(booking => (
-                      <TableRow key={booking._id} booking={booking} />
+                      <TableRow
+                        handleCancelBooking={handleCancelBooking}
+                        key={booking._id} booking={booking} />
                     ))}
                 </tbody>
               </table>
