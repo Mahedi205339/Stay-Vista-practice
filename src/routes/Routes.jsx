@@ -17,6 +17,7 @@ import Profile from '../pages/dashboard/Admin/Common/Profile'
 import MyBookings from '../pages/dashboard/Guest/MyBookings'
 import ManageBookings from '../pages/dashboard/Host/ManageBookings'
 import Statistics from '../pages/dashboard/Admin/Common/Statistics'
+import UpdateRoom from '../components/Form/UpdateRoom'
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,12 @@ export const router = createBrowserRouter([
       {
         path: 'my-bookings',
         element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>
+      }
+      ,
+      {
+        path:'update-room/:id',
+        element: <PrivateRoute><HostRoute> <UpdateRoom></UpdateRoom></HostRoute></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:5000/update-room/${params.id}`)
       }
     ]
   }

@@ -1,16 +1,65 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import useAuth from '../../../hooks/useAuth'
 
 import { getHostRoom } from '../../../api/rooms'
 import RoomDataRow from '../../../components/Dashboard/TableRows/RoomDataRows'
+import Swal from 'sweetalert2'
+import axiosSecure from '../../../api'
+import { useQuery } from '@tanstack/react-query'
+// import toast from 'react-hot-toast'
 
 const MyListing = () => {
   const { user } = useAuth()
-  const [rooms, setRooms] = useState([])
-  useEffect(() => {
-    getHostRoom(user?.email).then(data => setRooms(data))
-  }, [user])
+  // const [rooms, setRooms] = useState([])
+  // useEffect(() => {
+  //   getHostRoom(user?.email).then(data => setRooms(data))
+  // }, [user])
+
+  const { data: rooms = [], refetch } = useQuery({
+    queryKey: ['rooms'],
+    queryFn: async () => await getHostRoom(user?.email),
+
+  })
+  const handleDelete = id => {
+    // console.log(id)
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/rooms/${id}`)
+        // console.log(res.data)
+        refetch()
+        Swal.fire({
+          title: "Delete!",
+          text: "Room is deleted.",
+          icon: "success",
+          timer: 1500
+        });
+      }
+    })
+  }
+
+  // const handleUpdateRoom = id => {
+  //   axiosSecure.put(`/rooms/${id}`)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       if (res.data.modifiedCount > 0) {
+  //         refetch()
+  //         toast.success('task added to todo')
+  //       }
+  //     })
+
+  // }
+
+
+
   return (
     <>
       <Helmet>
@@ -72,7 +121,11 @@ const MyListing = () => {
                   {/* Room row data */}
 
                   {rooms.map(room => (
-                    <RoomDataRow key={room._id} room={room} />
+                    <RoomDataRow
+                      // handleUpdateRoom={handleUpdateRoom}
+                      handleDelete={handleDelete}
+                      refetch={refetch}
+                      key={room._id} room={room} />
                   ))}
                 </tbody>
               </table>

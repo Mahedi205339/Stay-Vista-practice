@@ -1,9 +1,10 @@
 import { format } from 'date-fns'
+import { Link } from 'react-router-dom';
 
-const RoomDataRow = ({ room }) => {
+const RoomDataRow = ({ room, handleDelete }) => {
 
   console.log(room);
-    
+
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -44,7 +45,7 @@ const RoomDataRow = ({ room }) => {
             aria-hidden='true'
             className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
           ></span>
-          <span className='relative'>Delete</span>
+          <span onClick={() => handleDelete(room._id)} className='relative'>Delete</span>
         </span>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -53,7 +54,7 @@ const RoomDataRow = ({ room }) => {
             aria-hidden='true'
             className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
           ></span>
-          <span className='relative'>Update</span>
+          <Link to={`/dashboard/update-room/${room._id}`}>  <span className='relative'>Update</span></Link>
         </span>
       </td>
     </tr>

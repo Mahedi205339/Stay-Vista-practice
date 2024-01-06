@@ -23,3 +23,8 @@ export const addRoom = async roomData => {
         roomData)
     return data
 }
+export const updateRoom = async (roomData, id) => {
+    const { data } = await axiosSecure.put(`/update-room/${id}`,
+        roomData)
+    return data
+}

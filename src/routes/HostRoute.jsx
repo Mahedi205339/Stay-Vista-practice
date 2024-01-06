@@ -7,7 +7,7 @@ const HostRoute = ({ children }) => {
     if (isLoading) return <Loader />
     if (role === 'host') return children
 
-    return <Navigate to='/dashboard'   />
+    return <Navigate to='/dashboard' />
 
 };
 

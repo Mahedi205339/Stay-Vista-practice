@@ -15,7 +15,7 @@ const ManageBookings = () => {
     enabled: !loading,
     queryFn: async () => await getHostBookings(user?.email),
   })
-  console.log(bookings)
+  // console.log(bookings)
   if (isLoading) return <Loader />
   return (
     <>
